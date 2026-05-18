@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>n8n AI Automation Hub — Pitch Deck Fase 4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0d0d0d;--ink2:#3a3a3a;--ink3:#6e6e6e;--ink4:#a0a0a0;
+  --bg:#f5f4f0;--card:#ffffff;--border:#e4e2db;--border2:#ccc9c0;
+  --accent:#e8365d;--accent-dark:#b5233f;--accent-light:#fdf0f3;
+  --purple:#5b21b6;--purple-light:#f5f3ff;
+  --green:#065f46;--green-light:#d1fae5;--green-mid:#059669;
+  --amber:#92400e;--amber-light:#fef3c7;
+  --blue:#1e3a8a;--blue-light:#dbeafe;
+  --red:#991b1b;--red-light:#fee2e2;
+  --r:10px;--r-lg:16px;--r-xl:20px;
+}
+
+html,body{
+  height:100%;
+  background:#1a1a2e;
+  font-family:'DM Sans',sans-serif;
+  color:var(--ink);
+  overflow:hidden;
+}
+
+/* ── SHELL ── */
+.shell{
+  width:100vw;height:100vh;
+  display:flex;flex-direction:column;
+  background:#1a1a2e;
+}
+
+/* ── SLIDE AREA ── */
+.slides-area{
+  flex:1;
+  display:flex;align-items:center;justify-content:center;
+  padding:1.5rem 1rem .5rem;
+  overflow:hidden;
+}
+
+.slide-frame{
+  width:900px;
+  aspect-ratio:16/9;
+  background:var(--card);
+  border-radius:var(--r-xl);
+  box-shadow:0 32px 80px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.06);
+  overflow:hidden;
+  position:relative;
+  display:flex;flex-direction:column;
+}
+
+/* ── CONTROLS ── */
+.controls{
+  display:flex;align-items:center;justify-content:center;
+  gap:1rem;padding:.6rem 0 .8rem;
+  flex-shrink:0;
+}
+.ctrl-btn{
+  width:36px;height:36px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.08);
+  color:#fff;font-size:.9rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;font-family:'DM Sans',sans-serif;
+}
+.ctrl-btn:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.4)}
+.ctrl-btn:disabled{opacity:.3;cursor:not-allowed}
+.slide-counter{
+  font-size:.72rem;font-weight:500;
+  color:rgba(255,255,255,.55);
+  min-width:60px;text-align:center;
+  letter-spacing:.04em;
+}
+.dot-nav{display:flex;gap:5px;align-items:center}
+.dot{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(255,255,255,.2);cursor:pointer;
+  transition:all .25s;
+}
+.dot.active{background:var(--accent);width:18px;border-radius:3px}
+.dot:hover{background:rgba(255,255,255,.5)}
+
+/* ── SLIDE TRANSITIONS ── */
+.slide{display:none;width:100%;height:100%;animation:fadeSlide .3s ease}
+.slide.active{display:flex;flex-direction:column}
+@keyframes fadeSlide{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fadeSlideBack{from{opacity:0;transform:translateX(-16px)}to{opacity:1;transform:translateX(0)}}
+.slide.back{animation:fadeSlideBack .3s ease}
+
+/* ── SLIDE HEADER STRIPE ── */
+.s-stripe{height:4px;width:100%;flex-shrink:0}
+.stripe-accent{background:var(--accent)}
+.stripe-dark{background:var(--ink)}
+.stripe-purple{background:var(--purple)}
+.stripe-green{background:var(--green-mid)}
+.stripe-blue{background:#2563eb}
+.stripe-amber{background:#d97706}
+.stripe-gradient{background:linear-gradient(90deg,var(--accent),var(--purple))}
+
+/* ── COMMON ELEMENTS ── */
+.s-body{flex:1;padding:2rem 2.5rem;display:flex;flex-direction:column;overflow:hidden}
+.s-body-row{flex:1;display:grid;gap:1.5rem;overflow:hidden}
+
+.eyebrow{font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.35rem}
+.eyebrow-purple{color:var(--purple)}
+.eyebrow-green{color:var(--green-mid)}
+.eyebrow-blue{color:#2563eb}
+.eyebrow-amber{color:#d97706}
+
+.s-title{font-family:'Syne',sans-serif;font-size:1.65rem;font-weight:800;color:var(--ink);line-height:1.15;margin-bottom:.3rem}
+.s-title span{background:var(--ink);color:#fff;padding:1px 7px;border-radius:4px;display:inline}
+.s-title .hi{background:var(--accent);color:#fff;padding:1px 7px;border-radius:4px;display:inline}
+.s-sub{font-size:.82rem;color:var(--ink3);line-height:1.6}
+
+.label{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink4);margin-bottom:.45rem}
+
+.card{background:var(--bg);border-radius:var(--r);padding:1rem 1.1rem;border:.5px solid var(--border)}
+.card-white{background:var(--card);border-radius:var(--r);padding:1rem 1.1rem;border:.5px solid var(--border)}
+
+.tag{display:inline-block;font-size:.6rem;font-weight:600;padding:2px 8px;border-radius:10px;letter-spacing:.03em}
+.tag-accent{background:var(--accent-light);color:var(--accent)}
+.tag-green{background:var(--green-light);color:var(--green)}
+.tag-amber{background:var(--amber-light);color:var(--amber)}
+.tag-blue{background:var(--blue-light);color:var(--blue)}
+.tag-purple{background:var(--purple-light);color:var(--purple)}
+.tag-red{background:var(--red-light);color:var(--red)}
+
+.divider{height:.5px;background:var(--border);margin:.6rem 0}
+
+/* ────────────────────────────────────── */
+/* SLIDE 1 — CAPA                        */
+/* ────────────────────────────────────── */
+#s0{background:var(--ink);color:#fff}
+#s0 .s-stripe{background:linear-gradient(90deg,var(--accent),var(--purple),#2563eb)}
+.s1-inner{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:0;overflow:hidden}
+.s1-left{
+  padding:2rem 2rem 2rem 2.5rem;
+  display:flex;flex-direction:column;justify-content:center;
+  border-right:.5px solid rgba(255,255,255,.1);
+}
+.s1-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:.3rem .75rem;border-radius:20px;
+  background:rgba(255,255,255,.1);border:.5px solid rgba(255,255,255,.2);
+  color:rgba(255,255,255,.7);margin-bottom:1.25rem;width:fit-content;
+}
+.s1-title{
+  font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;
+  color:#fff;line-height:1.1;margin-bottom:.75rem;
+}
+.s1-title em{font-style:normal;color:var(--accent)}
+.s1-desc{font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:1.5rem}
+.s1-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.s1-tag{
+  font-size:.6rem;font-weight:500;padding:3px 10px;
+  border-radius:20px;border:.5px solid rgba(255,255,255,.15);
+  color:rgba(255,255,255,.5);
+}
+.s1-right{
+  padding:2rem;display:grid;grid-template-rows:1fr 1fr;gap:1rem;
+}
+.s1-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;align-content:center}
+.s1-stat{
+  background:rgba(255,255,255,.06);border-radius:var(--r);
+  padding:.85rem 1rem;border:.5px solid rgba(255,255,255,.1);
+}
+.s1-num{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:#fff}
+.s1-lbl{font-size:.65rem;color:rgba(255,255,255,.4);margin-top:2px;line-height:1.3}
+.s1-mission{
+  background:rgba(232,54,93,.12);border-radius:var(--r);
+  padding:1rem;border:.5px solid rgba(232,54,93,.25);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.s1-mission-label{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(232,54,93,.7);margin-bottom:.4rem}
+.s1-mission-text{font-size:.8rem;color:rgba(255,255,255,.75);line-height:1.55;font-style:italic}
+
+/* ────────────────────────────────────── */
+/* SLIDE 2 — PROBLEMA & OPORTUNIDADE     */
+/* ────────────────────────────────────── */
+.prob-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.75rem;flex:1}
+.prob-left{display:flex;flex-direction:column;gap:.6rem}
+.prob-stat{
+  display:flex;align-items:center;gap:.75rem;
+  padding:.7rem .9rem;border-radius:var(--r);
+  background:var(--bg);border:.5px solid var(--border);
+}
+.prob-num{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--accent);flex-shrink:0;min-width:54px}
+.prob-text{font-size:.75rem;color:var(--ink2);line-height:1.4}
+.prob-right{display:flex;flex-direction:column;gap:.6rem}
+.opp-card{
+  flex:1;border-radius:var(--r);padding:.8rem .9rem;
+  border:.5px solid var(--border);
+  display:flex;flex-direction:column;
+}
+.opp-icon{font-size:1.1rem;margin-bottom:.3rem}
+.opp-title{font-size:.78rem;font-weight:600;color:var(--ink);margin-bottom:.25rem}
+.opp-desc{font-size:.7rem;color:var(--ink3);line-height:1.45}
+
+/* ────────────────────────────────────── */
+/* SLIDE 3 — SEGMENTAÇÃO                 */
+/* ────────────────────────────────────── */
+.seg-row{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin:.6rem 0}
+.seg-card{
+  border-radius:var(--r);padding:.9rem 1rem;
+  border:.5px solid var(--border);background:var(--bg);
+  position:relative;overflow:hidden;
+}
+.seg-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+}
+.seg-card.primary::before{background:var(--accent)}
+.seg-card.secondary::before{background:var(--purple)}
+.seg-card.tertiary::before{background:#2563eb}
+.seg-rank{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink4);margin-bottom:.3rem}
+.seg-name{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;color:var(--ink);margin-bottom:.3rem}
+.seg-desc{font-size:.68rem;color:var(--ink3);line-height:1.4;margin-bottom:.5rem}
+.seg-metrics{display:flex;flex-direction:column;gap:.25rem}
+.seg-metric{display:flex;justify-content:space-between;align-items:center}
+.seg-metric-label{font-size:.62rem;color:var(--ink4)}
+.seg-metric-val{font-size:.68rem;font-weight:600;color:var(--ink2)}
+
+.icetable{width:100%;border-collapse:collapse;font-size:.72rem;margin-top:.5rem}
+.icetable th{padding:.4rem .6rem;text-align:left;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--ink4);border-bottom:.5px solid var(--border);background:var(--bg)}
+.icetable td{padding:.4rem .6rem;border-bottom:.5px solid var(--border);color:var(--ink2)}
+.icetable tr.top td{background:#fdf0f3;font-weight:500}
+.score-pill{display:inline-block;font-size:.6rem;font-weight:700;padding:1px 7px;border-radius:8px}
+
+/* ────────────────────────────────────── */
+/* SLIDE 4 — POSICIONAMENTO              */
+/* ────────────────────────────────────── */
+.pos-statement{
+  background:var(--ink);color:#fff;border-radius:var(--r);
+  padding:1rem 1.25rem;margin:.5rem 0 .75rem;
+}
+.pos-statement p{font-size:.78rem;line-height:1.65;color:rgba(255,255,255,.8)}
+.pos-statement strong{color:var(--accent)}
+
+.comp-table{width:100%;border-collapse:collapse;font-size:.72rem}
+.comp-table th{padding:.45rem .7rem;text-align:left;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--ink4);border-bottom:.5px solid var(--border);background:var(--bg)}
+.comp-table td{padding:.45rem .7rem;border-bottom:.5px solid var(--border);color:var(--ink2)}
+.comp-table tr.us td{background:#fdf0f3;font-weight:600;color:var(--ink)}
+.comp-table tr.us td:first-child{color:var(--accent)}
+.badge{display:inline-block;font-size:.6rem;font-weight:600;padding:2px 8px;border-radius:8px}
+.b-hi{background:var(--green-light);color:var(--green)}
+.b-mid{background:var(--amber-light);color:var(--amber)}
+.b-lo{background:var(--red-light);color:var(--red)}
+.b-accent{background:var(--accent-light);color:var(--accent)}
+
+.diff-row{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-top:.6rem}
+.diff-item{background:var(--bg);border-radius:var(--r);padding:.65rem .8rem;border:.5px solid var(--border)}
+.diff-icon{font-size:1rem;margin-bottom:.25rem}
+.diff-title{font-size:.72rem;font-weight:600;color:var(--ink);margin-bottom:.2rem}
+.diff-desc{font-size:.62rem;color:var(--ink3);line-height:1.4}
+
+/* ────────────────────────────────────── */
+/* SLIDE 5 — PROTÓTIPO                   */
+/* ────────────────────────────────────── */
+.proto-steps{display:flex;align-items:flex-start;gap:.5rem;margin:.6rem 0;overflow:hidden}
+.proto-step{flex:1;display:flex;flex-direction:column;align-items:center;position:relative}
+.proto-step:not(:last-child)::after{
+  content:'→';position:absolute;right:-.4rem;top:.7rem;
+  font-size:.75rem;color:var(--ink4);
+}
+.proto-circle{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--ink);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-size:.7rem;font-weight:700;
+  margin-bottom:.35rem;flex-shrink:0;
+}
+.proto-step-name{font-size:.68rem;font-weight:600;color:var(--ink);text-align:center;margin-bottom:.15rem}
+.proto-step-time{font-size:.6rem;color:var(--ink4);text-align:center;margin-bottom:.2rem}
+.proto-step-desc{font-size:.6rem;color:var(--ink3);text-align:center;line-height:1.35;padding:0 .1rem}
+
+.ttfv-bar{
+  background:var(--bg);border-radius:var(--r);
+  padding:.75rem 1rem;border:.5px solid var(--border);
+  display:flex;align-items:center;gap:1.5rem;margin-bottom:.6rem;
+}
+.ttfv-label{font-size:.65rem;font-weight:600;color:var(--ink2);min-width:90px}
+.ttfv-track{flex:1;height:8px;background:var(--border);border-radius:4px;position:relative}
+.ttfv-before{height:100%;border-radius:4px;background:#fca5a5}
+.ttfv-after{height:100%;border-radius:4px;background:var(--green-mid);position:absolute;top:0;left:0}
+.ttfv-vals{display:flex;justify-content:space-between;font-size:.6rem;color:var(--ink4);margin-top:3px}
+
+.hyp-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.hyp-card{
+  background:var(--bg);border-radius:var(--r);padding:.65rem .8rem;
+  border-left:3px solid var(--ink);
+}
+.hyp-id{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink4);margin-bottom:.2rem}
+.hyp-text{font-size:.7rem;color:var(--ink2);line-height:1.35;margin-bottom:.25rem}
+.hyp-goal{font-size:.65rem;font-weight:600;color:var(--green-mid)}
+
+/* ────────────────────────────────────── */
+/* SLIDE 6 — EXPERIMENTOS ÁGEIS          */
+/* ────────────────────────────────────── */
+.sprint-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin:.5rem 0}
+.sprint-card{
+  background:var(--bg);border-radius:var(--r);
+  padding:.8rem 1rem;border:.5px solid var(--border);
+}
+.sprint-header{display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem}
+.sprint-num{
+  width:22px;height:22px;border-radius:50%;
+  background:var(--ink);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.6rem;font-weight:700;flex-shrink:0;
+}
+.sprint-title{font-size:.75rem;font-weight:600;color:var(--ink)}
+.sprint-period{font-size:.62rem;color:var(--ink4);margin-left:auto}
+.sprint-exp{font-size:.68rem;color:var(--ink2);margin-bottom:.4rem;line-height:1.4}
+.sprint-metrics{display:flex;flex-direction:column;gap:.2rem}
+.sprint-metric{display:flex;justify-content:space-between;font-size:.65rem}
+.sm-label{color:var(--ink4)}
+.sm-val{font-weight:600;color:var(--ink2)}
+.sm-goal{font-weight:600;color:var(--green-mid)}
+
+.metrics-bottom{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-top:.6rem}
+.met-card{
+  background:var(--ink);border-radius:var(--r);
+  padding:.6rem .7rem;text-align:center;
+}
+.met-num{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:#fff}
+.met-label{font-size:.6rem;color:rgba(255,255,255,.45);margin-top:2px}
+.met-arrow{font-size:.65rem;color:var(--accent);font-weight:600;display:block;margin-top:1px}
+
+/* ────────────────────────────────────── */
+/* SLIDE 7 — RISCOS & CRISES             */
+/* ────────────────────────────────────── */
+.risk-list{display:flex;flex-direction:column;gap:.45rem;margin:.5rem 0}
+.risk-row{
+  display:grid;grid-template-columns:2.5fr .7fr .7fr 2.5fr;
+  gap:.5rem;align-items:center;
+  padding:.55rem .75rem;border-radius:var(--r);
+  background:var(--bg);border:.5px solid var(--border);
+}
+.risk-name{font-size:.75rem;font-weight:500;color:var(--ink)}
+.risk-pill{font-size:.6rem;font-weight:600;padding:2px 7px;border-radius:8px;text-align:center}
+.rp-crit{background:var(--red-light);color:var(--red)}
+.rp-high{background:var(--amber-light);color:var(--amber)}
+.rp-mod{background:var(--blue-light);color:var(--blue)}
+.risk-mit{font-size:.65rem;color:var(--ink3);line-height:1.35}
+
+.crisis-row{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-top:.6rem}
+.crisis-card{border-radius:var(--r);padding:.75rem .9rem;border:.5px solid}
+.crisis-card.l1{background:var(--blue-light);border-color:#93c5fd}
+.crisis-card.l2{background:var(--amber-light);border-color:#fcd34d}
+.crisis-card.l3{background:var(--red-light);border-color:#fca5a5}
+.crisis-lvl{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.2rem}
+.crisis-time{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;margin-bottom:.2rem}
+.crisis-who{font-size:.65rem;line-height:1.4;color:var(--ink2)}
+
+/* ────────────────────────────────────── */
+/* SLIDE 8 — ROADMAP                     */
+/* ────────────────────────────────────── */
+.rm-list{display:flex;flex-direction:column;gap:.5rem;margin:.5rem 0;flex:1}
+.rm-row{
+  display:grid;grid-template-columns:110px 1fr;
+  gap:.75rem;align-items:start;
+}
+.rm-meta{}
+.rm-phase{font-family:'Syne',sans-serif;font-size:.78rem;font-weight:700;color:var(--ink)}
+.rm-period{font-size:.6rem;color:var(--ink4);margin-top:1px}
+.rm-owner{font-size:.6rem;color:var(--purple);font-weight:600;margin-top:3px}
+.rm-content{background:var(--bg);border-radius:var(--r);padding:.6rem .9rem;border:.5px solid var(--border)}
+.rm-goal{font-size:.72rem;font-weight:600;color:var(--ink);margin-bottom:.35rem}
+.rm-tags{display:flex;flex-wrap:wrap;gap:.3rem}
+.rm-tag{font-size:.6rem;font-weight:500;padding:2px 8px;border-radius:10px}
+.rm-must{background:var(--ink);color:#fff}
+.rm-should{background:var(--bg);color:var(--ink2);border:.5px solid var(--border2)}
+.rm-exit{font-size:.62rem;color:var(--green-mid);font-weight:600;margin-top:.35rem;border-top:.5px solid var(--border);padding-top:.3rem}
+
+/* ────────────────────────────────────── */
+/* SLIDE 9 — OKRs ATUALIZADOS            */
+/* ────────────────────────────────────── */
+.okr-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;flex:1}
+.okr-card{background:var(--bg);border-radius:var(--r);padding:.85rem 1rem;border:.5px solid var(--border);display:flex;flex-direction:column}
+.okr-obj{
+  font-family:'Syne',sans-serif;font-size:.78rem;font-weight:700;
+  color:var(--ink);margin-bottom:.5rem;padding-bottom:.4rem;
+  border-bottom:.5px solid var(--border);
+}
+.okr-krs{display:flex;flex-direction:column;gap:.3rem;flex:1}
+.okr-kr{display:grid;grid-template-columns:1fr auto auto;gap:.4rem;align-items:baseline}
+.okr-kr-text{font-size:.68rem;color:var(--ink2)}
+.okr-base{font-size:.62rem;color:var(--ink4);white-space:nowrap}
+.okr-target{font-family:'Syne',sans-serif;font-size:.72rem;font-weight:700;color:var(--green-mid);white-space:nowrap}
+
+/* ────────────────────────────────────── */
+/* SLIDE 10 — CONCLUSÃO                  */
+/* ────────────────────────────────────── */
+#s9{background:var(--ink);color:#fff}
+#s9 .s-stripe{background:linear-gradient(90deg,var(--accent),var(--purple))}
+.conc-inner{flex:1;display:grid;grid-template-columns:1.1fr 1fr;gap:0;overflow:hidden}
+.conc-left{padding:1.75rem 2rem 1.75rem 2.5rem;display:flex;flex-direction:column;justify-content:center;border-right:.5px solid rgba(255,255,255,.1)}
+.conc-eyebrow{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(232,54,93,.8);margin-bottom:.75rem}
+.conc-title{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:#fff;line-height:1.15;margin-bottom:.75rem}
+.conc-title span{color:var(--accent)}
+.conc-body{font-size:.78rem;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:1.2rem}
+.conc-pills{display:flex;flex-wrap:wrap;gap:.4rem}
+.conc-pill{font-size:.62rem;font-weight:600;padding:.3rem .75rem;border-radius:20px;border:.5px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6)}
+.conc-right{padding:1.75rem 2rem;display:flex;flex-direction:column;gap:.65rem;justify-content:center}
+.conc-metric{
+  background:rgba(255,255,255,.06);border-radius:var(--r);
+  padding:.7rem .9rem;border:.5px solid rgba(255,255,255,.1);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.conc-m-label{font-size:.7rem;color:rgba(255,255,255,.5)}
+.conc-m-val{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:#fff}
+.conc-m-val.accent{color:var(--accent)}
+.conc-sign{
+  margin-top:auto;padding-top:.5rem;
+  font-size:.62rem;color:rgba(255,255,255,.25);
+  border-top:.5px solid rgba(255,255,255,.08);
+}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="slides-area">
+    <div class="slide-frame">
+
+      <!-- ══════════════════════════════ -->
+      <!-- SLIDE 1 — CAPA                -->
+      <!-- ══════════════════════════════ -->
+      <div class="slide active" id="s0">
+        <div class="s-stripe stripe-gradient"></div>
+        <div class="s1-inner">
+          <div class="s1-left">
+            <div class="s1-badge">Tech Challenge · Fase 4 · FIAP Pós Tech 3GETT</div>
+            <div class="s1-title">n8n AI<br><em>Automation</em><br>Hub</div>
+            <div class="s1-desc">Estratégia de entrada no mercado para democratizar a automação inteligente — transformando proposta de valor em crescimento escalável e sustentável.</div>
+            <div class="s1-tags">
+              <span class="s1-tag">Go-to-Market</span>
+              <span class="s1-tag">Product-Led Growth</span>
+              <span class="s1-tag">Lean Startup</span>
+              <span class="s1-tag">Agile · OKRs</span>
+              <span class="s1-tag">Gabriel de Souza Vitório · RM 368836</span>
+            </div>
+          </div>
+          <div class="s1-right">
+            <div class="s1-stat-grid">
+              <div class="s1-stat">
+                <div class="s1-num">USD 26.7B</div>
+                <div class="s1-lbl">Mercado BPA em 2028 — CAGR 13,5%</div>
+              </div>
+              <div class="s1-stat">
+                <div class="s1-num">52%</div>
+                <div class="s1-lbl">Drop-off no onboarding atual do n8n</div>
+              </div>
+              <div class="s1-stat">
+                <div class="s1-num">45 → 12</div>
+                <div class="s1-lbl">Redução de TTFV (minutos) com IA</div>
+              </div>
+              <div class="s1-stat">
+                <div class="s1-num">USD 300k</div>
+                <div class="s1-lbl">MRR projetado — fim do Ano 1</div>
+              </div>
+            </div>
+            <div class="s1-mission">
+              <div class="s1-mission-label">Visão do produto</div>
+              <div class="s1-mission-text">"Automatizar processos poderosos não deveria exigir que você seja engenheiro. O Hub é a ponte entre intenção e execução."</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════ -->
+      <!-- SLIDE 2 — PROBLEMA & OPORTUNIDADE -->
+      <!-- ══════════════════════════════ -->
+      <div class="slide" id="s1">
+        <div class="s-stripe stripe-accent"></div>
+        <div class="s-body">
+          <div class="eyebrow">Contexto estratégico</div>
+          <div class="s-title">O problema é real.<br>A <span>oportunidade</span> também.</div>
+          <div class="prob-grid">
+            <div class="prob-left">
+              <div class="label">Evidências do problema (dados simulados com base em benchmarks)</div>
+              <div class="prob-stat">
+                <div class="prob-num">52%</div>
+                <div class="prob-text">dos usuários abandonam o n8n nos <strong>primeiros 18 minutos</strong> de onboarding</div>
+              </div>
+              <div class="prob-stat">
+                <div class="prob-num">68%</div>
+                <div class="prob-text">abandonam ferramentas de automação complexas <strong>na primeira sessão</strong></div>
+              </div>
+              <div class="prob-stat">
+                <div class="prob-num">45 min</div>
+                <div class="prob-text">é o TTFV médio atual — <strong>tempo até o primeiro fluxo funcionar</strong></div>
+              </div>
+              <div class="prob-stat">
+                <div class="prob-num">61%</div>
+                <div class="prob-text">relatam <strong>medo de errar</strong> ao configurar automações sem suporte</div>
+              </div>
+            </div>
+            <div class="prob-right">
+              <div class="label">Oportunidades identificadas</div>
+              <div class="opp-card" style="background:#fdf0f3;border-color:#fad0d9">
+                <div class="opp-icon">🎯</div>
+                <div class="opp-title">Reduzir barreira de entrada</div>
+                <div class="opp-desc">Onboarding guiado por IA que adapta a experiência ao perfil do usuário — técnico ou não técnico</div>
+              </div>
+              <div class="opp-card" style="background:#f5f3ff;border-color:#ddd6fe">
+                <div class="opp-icon">🤖</div>
+                <div class="opp-title">IA como orquestrador</div>
+                <div class="opp-desc">Posicionar o n8n como camada de orquestração inteligente entre sistemas e modelos de IA</div>
+              </div>
+              <div class="opp-card" style="background:#ecfdf5;border-color:#a7f3d0">
+                <div class="opp-icon">💰</div>
+                <div class="opp-title">Monetização sustentável</div>
+                <div class="opp-desc">Modelo freemium + marketplace + premium sem comprometer o ecossistema open source</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════ -->
+      <!-- SLIDE 3 — SEGMENTAÇÃO         -->
+      <!-- ══════════════════════════════ -->
+      <div class="slide" id="s2">
+        <div class="s-stripe stripe-dark"></div>
+        <div class="s-body">
+          <div class="eyebrow">Segmentação de mercado</div>
+          <div class="s-title">Três segmentos.<br>Priorizados por <span>ICE Score.</span></div>
+          <div class="seg-row">
+            <div class="seg-card primary">
+              <div class="seg-rank">🥇 Segmento principal</div>
+              <div class="seg-name">Profissionais de Operações</div>
+              <div class="seg-desc">RevOps, Marketing Ops e Sales Ops em SMBs e Mid-Market (50–500 funcionários). Dependem de devs para automações simples.</div>
+              <div class="seg-metrics">
+                <div class="seg-metric"><span class="seg-metric-label">TAM</span><span class="seg-metric-val">18M profissionais</span></div>
+                <div class="seg-metric"><span class="seg-metric-label">CAC estimado</span><span class="seg-metric-val">USD 80–100</span></div>
+                <div class="seg-metric"><span class="seg-metric-label">ICE Score</span><span class="seg-metric-val">9/10</span></div>
+              </div>
+            </div>
+            <div class="seg-card secondary">
+              <div class="seg-rank">🥈 Segmento multiplicador</div>
+              <div class="seg-name">Agências & Consultoras</div>
+              <div class="seg-desc">Implementam automações para clientes finais. Cada agência traz dezenas de usuários finais — alto potencial de viralização.</div>
+              <div class="seg-metrics">
+                <div class="seg-metric"><span class="seg-metric-label">TAM</span><span class="seg-metric-val">2.5M agências</span></div>
+                <div class="seg-metric"><span class="seg-metric-label">CAC estimado</span><span class="seg-metric-val">USD 150–200</span></div>
+                <div class="seg-metric"><span class="seg-metric-label">ICE Score</span><span class="seg-metric-val">8/10</span></div>
+              </div>
+            </div>
+            <div class="seg-card tertiary">
+              <div class="seg-rank">🥉 Segmento comunidade</div>
+              <div class="seg-name">Devs & Makers</div>
+              <div class="seg-desc">Freelancers, indie hackers e construtores de produtos. Motor de evangelização e crescimento orgânico com custo quase zero.</div>
+              <div class="seg-metrics">
+                <div class="seg-metric"><span class="seg-metric-label">TAM</span><span class="seg-metric-val">31M desenvolvedores</span></div>
+                <div class="seg-metric"><span class="seg-metric-label">CAC estimado</span><span class="seg-metric-val">USD 20–40</span></div>
+                <div class="seg-metric"><span class="seg-metric-label">ICE Score</span><span class="seg-metric-val">7/10</span></div>
+              </div>
+            </div>
+          </div>
+          <table class="icetable">
+            <tr><th>Segmento</th><th>Impacto</th><th>Confiança</th><th>Facilidade</th><th>Score</th><th>Prioridade</th></tr>
+            <tr class="top"><td>Profissionais de Operações</td><td>Alta</td><td>Alta</td><td>Alta</td><td><span class="score-pill" style="background:#fdf0f3;color:var(--accent)">9</span></td><td><span class="tag tag-accent">Lançamento</span></td></tr>
+            <tr><td>Agências & Consultoras</td><td>Alta</td><td>Alta</td><td>Média</td><td><span class="score-pill" style="background:#f5f3ff;color:var(--purple)">8</span></td><td><span class="tag tag-purple">Mês 2–3</span></td></tr>
+            <tr><td>Devs & Makers</td><td>Média</td><td>Alta</td><td>Alta</td><td><span class="score-pill" style="background:#dbeafe;color:#1e3a8a">7</span></td><td><span class="tag tag-blue">Contínuo</span></td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════ -->
+      <!-- SLIDE 4 — POSICIONAMENTO      -->
+      <!-- ══════════════════════════════ -->
+      <div class="slide" id="s3">
+        <div class="s-stripe stripe-purple"></div>
+        <div class="s-body">
+          <div class="eyebrow eyebrow-purple">Posicionamento competitivo</div>
+          <div class="s-title">Um espaço que nenhum<br>concorrente <span>consegue ocupar.</span></div>
+          <div class="pos-statement">
+            <p>Para equipes técnicas e não técnicas que precisam automatizar processos com <strong>controle total sobre seus dados</strong>, o n8n AI Hub é a única plataforma que combina <strong>poder de automações enterprise</strong> com a <strong>acessibilidade de ferramentas no-code</strong> — eliminando dependência de fornecedores e reduzindo o TTFV de 45 para 12 minutos.</p>
+          </div>
+          <table class="comp-table">
+            <tr><th>Plataforma</th><th>Poder Técnico</th><th>Acessibilidade</th><th>Controle de Dados</th><th>Modelo</th><th>Preço/operação</th></tr>
+            <tr class="us"><td>✦ n8n AI Hub</td><td><span class="badge b-hi">Muito Alto</span></td><td><span class="badge b-hi">Alto</span></td><td><span class="badge b-hi">Total</span></td><td><span class="badge b-accent">Open Source</span></td><td><span class="badge b-hi">Sem custo</span></td></tr>
+            <tr><td>Zapier</td><td><span class="badge b-mid">Médio</span></td><td><span class="badge b-hi">Muito Alto</span></td><td><span class="badge b-lo">Baixo</span></td><td>SaaS</td><td><span class="badge b-lo">Por operação</span></td></tr>
+            <tr><td>Make</td><td><span class="badge b-hi">Alto</span></td><td><span class="badge b-hi">Alto</span></td><td><span class="badge b-mid">Médio</span></td><td>SaaS</td><td><span class="badge b-mid">Por operação</span></td></tr>
+            <tr><td>Power Automate</td><td><span class="badge b-hi">Alto</span></td><td><span class="badge b-mid">Médio</span></td><td><span class="badge b-mid">Microsoft</span></td><td>Proprietário</td><td><span class="badge b-mid">Por fluxo</span></td></tr>
+          </table>
+          <div class="diff-row">
+            <div class="diff-item">
+              <div class="diff-icon">🔐</div>
+              <div class="diff-title">Soberania de dados</div>
+              <div class="diff-desc">Único player com self-hosting completo — crítico para GDPR e LGPD</div>
+            </div>
+            <div class="diff-item">
+              <div class="diff-icon">🌍</div>
+              <div class="diff-title">Open Source Moat</div>
+              <div class="diff-desc">80k+ membros de comunidade contribuindo com integrações e templates</div>
+            </div>
+            <div class="diff-item">
+              <div class="diff-icon">🤖</div>
+              <div class="diff-title">Multi-Provider IA</div>
+              <div class="diff-desc">OpenAI + Anthropic + modelos locais num único fluxo de orquestração</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════ -->
+      <!-- SLIDE 5 — PROTÓTIPO           -->
+      <!-- ══════════════════════════════ -->
+      <div class="slide" id="s4">
+        <div class="s-stripe stripe-accent"></div>
+        <div class="s-body">
+          <div class="eyebrow">Experimentação · Protótipo de serviço</div>
+          <div class="s-title">5 telas. 22 minutos.<br><span>Primeiro fluxo ativo.</span></div>
+
+          <div class="ttfv-bar">
+            <span class="ttfv-label">TTFV atual: 45 min</span>
+            <div style="flex:1">
+              <div class="ttfv-track" style="height:10px">
+                <div class="ttfv-before" style="width:100%"></div>
+                <div class="ttfv-after" style="width:27%"></div>
+              </div>
+              <div class="ttfv-vals"><span>0 min</span><span style="color:var(--green-mid);font-weight:600">Meta: 12 min ↓ 73%</span><span>45 min</span></div>
+            </div>
+          </div>
+
+          <div class="proto-steps">
+            <div class="proto-step">
+              <div class="proto-circle">01</div>
+              <div class="proto-step-name">Profiling</div>
+              <div class="proto-step-time">0–2 min</div>
+              <div class="proto-step-desc">IA classifica perfil em 5 perguntas</div>
+            </div>
+            <div class="proto-step">
+              <div class="proto-circle">02</div>
+              <div class="proto-step-name">Templates</div>
+              <div class="proto-step-time">2–5 min</div>
+              <div class="proto-step-desc">Ranking personalizado por perfil</div>
+            </div>
+            <div class="proto-step">
+              <div class="proto-circle">03</div>
+              <div class="proto-step-name">AI Builder</div>
+              <div class="proto-step-time">5–12 min</div>
+              <div class="proto-step-desc">Fluxo gerado via linguagem natural</div>
+            </div>
+            <div class="proto-step">
+              <div class="proto-circle">04</div>
+              <div class="proto-step-name">Config Wizard</div>
+              <div class="proto-step-time">12–18 min</div>
+              <div class="proto-step-desc">IA valida credenciais em tempo real</div>
+            </div>
+            <div class="proto-step">
+              <div class="proto-circle">05</div>
+              <div class="proto-step-name">First Run</div>
+              <div class="proto-step-time">18–22 min</div>
+              <div class="proto-step-desc">Fluxo em produção + celebração</div>
+            </div>
+          </div>
+
+          <div class="label" style="margin-bottom:.4rem">Hipóteses críticas a validar</div>
+          <div class="hyp-grid">
+            <div class="hyp-card">
+              <div class="hyp-id">H1 — Onboarding</div>
+              <div class="hyp-text">IA no onboarding reduz drop-off nos primeiros 18 minutos</div>
+              <div class="hyp-goal">Meta: 52% → abaixo de 30%</div>
+            </div>
+            <div class="hyp-card">
+              <div class="hyp-id">H2 — Templates</div>
+              <div class="hyp-text">Templates contextualizados aumentam ativação em 7 dias</div>
+              <div class="hyp-goal">Meta: 48% → acima de 65%</div>
+            </div>
+            <div class="hyp-card">
+              <div class="hyp-id">H3 — AI Builder</div>
+              <div class="hyp-text">Linguagem natural reduz TTFV drasticamente</div>
+              <div class="hyp-goal">Meta: 45 min → abaixo de 20 min</div>
+            </div>
+            <div class="hyp-card">
+              <div class="hyp-id">H4 — Não técnicos</div>
+              <div class="hyp-text">Usuários sem habilidade técnica concluem fluxo sem ajuda</div>
+              <div class="hyp-goal">Meta: task completion acima de 70%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════ -->
+      <!-- SLIDE 6 — EXPERIMENTOS ÁGEIS  -->
+      <!-- ══════════════════════════════ -->
+      <div class="slide" id="s5">
+        <div class="s-stripe stripe-green"></div>
+        <div class="s-body">
+          <div class="eyebrow eyebrow-green">Validação · Lean Startup + A/B Testing</div>
+          <div class="s-title">4 sprints.<br>Hipóteses validadas <span>com dados.</span></div>
+          <div class="sprint-grid">
+            <div class="sprint-card">
+              <div class="sprint-header">
+                <div class="sprint-num">S1</div>
+                <div class="sprint-title">Validação do Onboarding</div>
+                <div class="sprint-period">Sem 1–2</div>
+              </div>
+              <div class="sprint-exp">A/B Test: onboarding atual vs. wizard com IA. Amostra: 1.000 novos usuários (N=500/grupo).</div>
+              <div class="sprint-metrics">
+                <div class="sprint-metric"><span class="sm-label">Métrica</span><span class="sm-val">Drop-off rate</span></div>
+                <div class="sprint-metric"><span class="sm-label">Baseline</span><span class="sm-val">52%</span></div>
+                <div class="sprint-metric"><span class="sm-label">Critério de sucesso</span><span class="sm-goal">Redução ≥15pp</span></div>
+              </div>
+            </div>
+            <div class="sprint-card">
+              <div class="sprint-header">
+                <div class="sprint-num">S2</div>
+                <div class="sprint-title">Validação de Templates</div>
+                <div class="sprint-period">Sem 3–4</div>
+              </div>
+              <div class="sprint-exp">Grupos com/sem templates personalizados por IA. Amostra: 800 usuários (N=400/grupo).</div>
+              <div class="sprint-metrics">
+                <div class="sprint-metric"><span class="sm-label">Métrica</span><span class="sm-val">Activation rate (7d)</span></div>
+                <div class="sprint-metric"><span class="sm-label">Baseline</span><span class="sm-val">48%</span></div>
+                <div class="sprint-metric"><span class="sm-label">Critério de sucesso</span><span class="sm-goal">Activation rate &gt;65%</span></div>
+              </div>
+            </div>
+            <div class="sprint-card">
+              <div class="sprint-header">
+                <div class="sprint-num">S3</div>
+                <div class="sprint-title">Validação AI Builder</div>
+                <div class="sprint-period">Sem 5–6</div>
+              </div>
+              <div class="sprint-exp">Usability testing com 20 usuários não técnicos. Protocolo think-aloud + gravação de sessão.</div>
+              <div class="sprint-metrics">
+                <div class="sprint-metric"><span class="sm-label">Métrica</span><span class="sm-val">Task completion rate</span></div>
+                <div class="sprint-metric"><span class="sm-label">Baseline</span><span class="sm-val">~30%</span></div>
+                <div class="sprint-metric"><span class="sm-label">Critério de sucesso</span><span class="sm-goal">Task completion &gt;70%</span></div>
+              </div>
+            </div>
+            <div class="sprint-card">
+              <div class="sprint-header">
+                <div class="sprint-num">S4</div>
+                <div class="sprint-title">Validação de Monetização</div>
+                <div class="sprint-period">Sem 7–8</div>
+              </div>
+              <div class="sprint-exp">Oferta contextual de upgrade (pós 1º fluxo) vs. oferta genérica. Amostra: 1.200 usuários ativos.</div>
+              <div class="sprint-metrics">
+                <div class="sprint-metric"><span class="sm-label">Métrica</span><span class="sm-val">Conversão free→paid</span></div>
+                <div class="sprint-metric"><span class="sm-label">Baseline</span><span class="sm-val">~5%</span></div>
+                <div class="sprint-metric"><span class="sm-label">Critério de sucesso</span><span class="sm-goal">Conversão &gt;8%</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="metrics-bottom">
+            <div class="met-card">
+              <div class="met-num">USD 80</div>
+              <div class="met-label">CAC estimado SMB</div>
+              <div class="met-arrow">↓ Meta: USD 50</div>
+            </div>
+            <div class="met-card">
+              <div class="met-num">USD 480</div>
+              <div class="met-label">LTV estimado (Ano 1)</div>
+              <div class="met-arrow">↑ Meta: USD 960</div>
+            </div>
+            <div class="met-card">
+              <div class="met-num">~4x</div>
+              <div class="met-label">LTV/CAC ratio MVP</div>
+              <div class="met-arrow">↑ Meta: 12x escala</div>
+            </div>
+            <div class="met-card">
+              <div class="met-num">NPS 45</div>
+              <div class="met-label">Meta pós-MVP</div>
+              <div class="met-arrow">↑ Meta escala: 65+</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════ -->
+      <!-- SLIDE 7 — RISCOS & CRISES     -->
+      <!-- ══════════════════════════════ -->
+      <div class="slide" id="s6">
+        <div class="s-stripe stripe-accent"></div>
+        <div class="s-body">
+          <div class="eyebrow">Gestão de crises · OODA Framework</div>
+          <div class="s-title">Riscos mapeados.<br><span>Respostas prontas.</span></div>
+          <div style="display:grid;grid-template-columns:3fr .8fr .8fr 2.8fr;gap:.4rem;padding:.3rem .6rem;font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink4)">
+            <span>Risco</span><span>Prob.</span><span>Impacto</span><span>Mitigação principal</span>
+          </div>
+          <div class="risk-list">
+            <div class="risk-row">
+              <div class="risk-name">Resposta agressiva de Zapier / Make com feature similar</div>
+              <span class="risk-pill rp-crit">Alta</span>
+              <span class="risk-pill rp-crit">Alto</span>
+              <div class="risk-mit">Soft launch silencioso + diferenciais estruturais ineditáveis (self-hosting + OS)</div>
+            </div>
+            <div class="risk-row">
+              <div class="risk-name">Violação de privacidade por integração de IA</div>
+              <span class="risk-pill rp-crit">Média</span>
+              <span class="risk-pill rp-crit">Muito Alto</span>
+              <div class="risk-mit">Arquitetura on-premise + logs de auditoria + opt-in explícito por feature de IA</div>
+            </div>
+            <div class="risk-row">
+              <div class="risk-name">Baixa adoção por usuários não técnicos</div>
+              <span class="risk-pill rp-high">Média</span>
+              <span class="risk-pill rp-high">Alto</span>
+              <div class="risk-mit">Beta fechado 200 usuários + Customer Success dedicado + iteração semanal</div>
+            </div>
+            <div class="risk-row">
+              <div class="risk-name">Dependência de único provedor de IA</div>
+              <span class="risk-pill rp-high">Alta</span>
+              <span class="risk-pill rp-high">Médio</span>
+              <div class="risk-mit">Arquitetura multi-provider desde MVP (OpenAI + Anthropic + modelos locais)</div>
+            </div>
+            <div class="risk-row">
+              <div class="risk-name">Resistência da comunidade open source à monetização</div>
+              <span class="risk-pill rp-mod">Média</span>
+              <span class="risk-pill rp-high">Alto</span>
+              <div class="risk-mit">Roadmap público + garantia explícita: core open source permanece gratuito para sempre</div>
+            </div>
+          </div>
+          <div class="crisis-row">
+            <div class="crisis-card l1">
+              <div class="crisis-lvl" style="color:#1d4ed8">Nível 1 — Incidente</div>
+              <div class="crisis-time" style="color:#1e3a8a">Resposta em 1h</div>
+              <div class="crisis-who">Status page + redes sociais + email aos afetados. Responsável: Engineer on-call + PM</div>
+            </div>
+            <div class="crisis-card l2">
+              <div class="crisis-lvl" style="color:#92400e">Nível 2 — Crise</div>
+              <div class="crisis-time" style="color:#92400e">Resposta em 30 min</div>
+              <div class="crisis-who">Todos os canais + blog oficial. Update a cada 30 min. Responsável: VP Eng + Head of Product</div>
+            </div>
+            <div class="crisis-card l3">
+              <div class="crisis-lvl" style="color:#991b1b">Nível 3 — Crítica</div>
+              <div class="crisis-time" style="color:#991b1b">Resposta em 15 min</div>
+              <div class="crisis-who">Notificação a todos os usuários. CEO + CTO + Jurídico. Notificação regulatória em 72h (GDPR)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════ -->
+      <!-- SLIDE 8 — ROADMAP ÁGIL        -->
+      <!-- ══════════════════════════════ -->
+      <div class="slide" id="s7">
+        <div class="s-stripe stripe-dark"></div>
+        <div class="s-body">
+          <div class="eyebrow">Plano de execução ágil · Scrum + Squads</div>
+          <div class="s-title">Roadmap 12 meses.<br>Backlog <span>priorizado por MoSCoW.</span></div>
+          <div class="rm-list">
+            <div class="rm-row">
+              <div class="rm-meta">
+                <div class="rm-phase">Fase 0</div>
+                <div class="rm-period">Sem 1–4 · Sprint 0</div>
+                <div class="rm-owner">Todos os squads</div>
+              </div>
+              <div class="rm-content">
+                <div class="rm-goal">Fundação — analytics, feature flags, 200 beta users, métricas base</div>
+                <div class="rm-tags">
+                  <span class="rm-tag rm-must">Analytics setup</span>
+                  <span class="rm-tag rm-must">200 beta users</span>
+                  <span class="rm-tag rm-must">Feature flags</span>
+                  <span class="rm-tag rm-must">Baseline metrics</span>
+                </div>
+              </div>
+            </div>
+            <div class="rm-row">
+              <div class="rm-meta">
+                <div class="rm-phase">Fase 1 — MVP</div>
+                <div class="rm-period">Sem 5–12 · Sprints 1–4</div>
+                <div class="rm-owner">Squad Onboarding</div>
+              </div>
+              <div class="rm-content">
+                <div class="rm-goal">Onboarding guiado + 30 templates + tour interativo</div>
+                <div class="rm-tags">
+                  <span class="rm-tag rm-must">Wizard de onboarding</span>
+                  <span class="rm-tag rm-must">30 templates por segmento</span>
+                  <span class="rm-tag rm-must">Tour guiado</span>
+                  <span class="rm-tag rm-should">NPS in-app</span>
+                  <span class="rm-tag rm-should">Busca semântica</span>
+                </div>
+                <div class="rm-exit">Critério de saída: drop-off &lt;35% · activation rate &gt;55% · NPS &gt;35</div>
+              </div>
+            </div>
+            <div class="rm-row">
+              <div class="rm-meta">
+                <div class="rm-phase">Fase 2 — IA</div>
+                <div class="rm-period">Sem 13–24 · Sprints 5–10</div>
+                <div class="rm-owner">Squad AI Features</div>
+              </div>
+              <div class="rm-content">
+                <div class="rm-goal">AI Flow Builder via NLP + assistente contextual + multi-provider</div>
+                <div class="rm-tags">
+                  <span class="rm-tag rm-must">AI Flow Builder (NLP)</span>
+                  <span class="rm-tag rm-must">Assistente IA contextual</span>
+                  <span class="rm-tag rm-must">Multi-provider IA</span>
+                  <span class="rm-tag rm-should">Auto-documentação</span>
+                </div>
+                <div class="rm-exit">Critério de saída: TTFV &lt;20min · 60% fluxos criados com IA · NPS &gt;50</div>
+              </div>
+            </div>
+            <div class="rm-row">
+              <div class="rm-meta">
+                <div class="rm-phase">Fase 3 — Escala</div>
+                <div class="rm-period">Sem 25–48 · Sprints 11–20</div>
+                <div class="rm-owner">Squad Monetization</div>
+              </div>
+              <div class="rm-content">
+                <div class="rm-goal">Plano Premium + marketplace de templates + programa de parceiros</div>
+                <div class="rm-tags">
+                  <span class="rm-tag rm-must">Plano Premium</span>
+                  <span class="rm-tag rm-must">Marketplace</span>
+                  <span class="rm-tag rm-must">Programa parceiros</span>
+                  <span class="rm-tag rm-should">Enterprise white-label</span>
+                </div>
+                <div class="rm-exit">Critério de saída: conversão free→paid &gt;15% · MRR crescendo &gt;20% MoM</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════ -->
+      <!-- SLIDE 9 — OKRs ATUALIZADOS    -->
+      <!-- ══════════════════════════════ -->
+      <div class="slide" id="s8">
+        <div class="s-stripe stripe-blue"></div>
+        <div class="s-body">
+          <div class="eyebrow eyebrow-blue">OKRs atualizados · Ciclo de lançamento — 4 objetivos · 16 Key Results</div>
+          <div class="s-title">Metas de mercado.<br>Tudo <span>rastreável.</span></div>
+          <div class="okr-grid">
+            <div class="okr-card">
+              <div class="okr-obj">OBJ 1 — Conquistar 10k usuários ativos</div>
+              <div class="okr-krs">
+                <div class="okr-kr"><span class="okr-kr-text">Usuários ativos no Hub</span><span class="okr-base">0</span><span class="okr-target">→ 10.000</span></div>
+                <div class="okr-kr"><span class="okr-kr-text">Drop-off onboarding</span><span class="okr-base">52%</span><span class="okr-target">→ 20%</span></div>
+                <div class="okr-kr"><span class="okr-kr-text">TTFV (Time to First Value)</span><span class="okr-base">45 min</span><span class="okr-target">→ 12 min</span></div>
+                <div class="okr-kr"><span class="okr-kr-text">Taxa de ativação (7 dias)</span><span class="okr-base">48%</span><span class="okr-target">→ 78%</span></div>
+              </div>
+            </div>
+            <div class="okr-card">
+              <div class="okr-obj">OBJ 2 — IA como pilar central do produto</div>
+              <div class="okr-krs">
+                <div class="okr-kr"><span class="okr-kr-text">Fluxos criados com IA</span><span class="okr-base">0%</span><span class="okr-target">→ 65%</span></div>
+                <div class="okr-kr"><span class="okr-kr-text">Usuários usando sugestões auto</span><span class="okr-base">0%</span><span class="okr-target">→ 80%</span></div>
+                <div class="okr-kr"><span class="okr-kr-text">NPS pós uso de IA features</span><span class="okr-base">—</span><span class="okr-target">→ 70</span></div>
+                <div class="okr-kr"><span class="okr-kr-text">Modelos de IA integrados</span><span class="okr-base">2</span><span class="okr-target">→ 8+</span></div>
+              </div>
+            </div>
+            <div class="okr-card">
+              <div class="okr-obj">OBJ 3 — Monetização sustentável</div>
+              <div class="okr-krs">
+                <div class="okr-kr"><span class="okr-kr-text">Conversão free → paid</span><span class="okr-base">~5%</span><span class="okr-target">→ 20%</span></div>
+                <div class="okr-kr"><span class="okr-kr-text">MRR (Monthly Recurring Revenue)</span><span class="okr-base">—</span><span class="okr-target">→ USD 300k</span></div>
+                <div class="okr-kr"><span class="okr-kr-text">Templates no marketplace</span><span class="okr-base">0</span><span class="okr-target">→ 500+</span></div>
+                <div class="okr-kr"><span class="okr-kr-text">Clientes enterprise ativos</span><span class="okr-base">0</span><span class="okr-target">→ 50</span></div>
+              </div>
+            </div>
+            <div class="okr-card">
+              <div class="okr-obj">OBJ 4 — Liderança de categoria</div>
+              <div class="okr-krs">
+                <div class="okr-kr"><span class="okr-kr-text">Crescimento comunidade open source</span><span class="okr-base">baseline</span><span class="okr-target">→ +35%</span></div>
+                <div class="okr-kr"><span class="okr-kr-text">Parceiros ativos (agências)</span><span class="okr-base">0</span><span class="okr-target">→ 100</span></div>
+                <div class="okr-kr"><span class="okr-kr-text">NPS geral da plataforma</span><span class="okr-base">—</span><span class="okr-target">→ 65+</span></div>
+                <div class="okr-kr"><span class="okr-kr-text">Menções positivas em mídia</span><span class="okr-base">—</span><span class="okr-target">→ 40+</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════ -->
+      <!-- SLIDE 10 — CONCLUSÃO          -->
+      <!-- ══════════════════════════════ -->
+      <div class="slide" id="s9">
+        <div class="s-stripe stripe-gradient"></div>
+        <div class="conc-inner">
+          <div class="conc-left">
+            <div class="conc-eyebrow">Conclusão estratégica</div>
+            <div class="conc-title">Automatização<br>para <span>todos.</span><br>Sem exceção.</div>
+            <div class="conc-body">O n8n AI Automation Hub não é uma adição de features — é uma reconceituação da relação entre usuário e plataforma. Ao posicionar a IA como camada entre complexidade técnica e intenção do usuário, o produto endereça diretamente as barreiras de adoção identificadas com dados. Crescer pelo produto. Validar antes de escalar. Posicionar onde nenhum concorrente pode seguir.</div>
+            <div class="conc-pills">
+              <span class="conc-pill">Product-Led Growth</span>
+              <span class="conc-pill">Lean Startup</span>
+              <span class="conc-pill">Open Source Moat</span>
+              <span class="conc-pill">GDPR/LGPD Ready</span>
+              <span class="conc-pill">Multi-Provider IA</span>
+            </div>
+          </div>
+          <div class="conc-right">
+            <div class="conc-metric">
+              <span class="conc-m-label">Drop-off onboarding</span>
+              <span class="conc-m-val accent">52% → 20%</span>
+            </div>
+            <div class="conc-metric">
+              <span class="conc-m-label">TTFV (Time to First Value)</span>
+              <span class="conc-m-val accent">45 → 12 min</span>
+            </div>
+            <div class="conc-metric">
+              <span class="conc-m-label">Taxa de ativação (7 dias)</span>
+              <span class="conc-m-val">48% → 78%</span>
+            </div>
+            <div class="conc-metric">
+              <span class="conc-m-label">Conversão free → paid</span>
+              <span class="conc-m-val">5% → 20%</span>
+            </div>
+            <div class="conc-metric">
+              <span class="conc-m-label">MRR projetado (Ano 1)</span>
+              <span class="conc-m-val">USD 300k</span>
+            </div>
+            <div class="conc-metric">
+              <span class="conc-m-label">Usuários ativos (Ano 1)</span>
+              <span class="conc-m-val">10.000</span>
+            </div>
+            <div class="conc-metric">
+              <span class="conc-m-label">NPS meta</span>
+              <span class="conc-m-val">65+</span>
+            </div>
+            <div class="conc-sign">Gabriel de Souza Vitório · RM 368836 · FIAP Pós Tech 3GETT · Fase 4</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /slide-frame -->
+  </div><!-- /slides-area -->
+
+  <!-- CONTROLS -->
+  <div class="controls">
+    <button class="ctrl-btn" id="btnPrev" onclick="navigate(-1)" disabled>←</button>
+    <div class="dot-nav" id="dotNav"></div>
+    <span class="slide-counter" id="counter">1 / 10</span>
+    <button class="ctrl-btn" id="btnNext" onclick="navigate(1)">→</button>
+  </div>
+</div>
+
+<script>
+const total = 10;
+let cur = 0;
+
+const dotNav = document.getElementById('dotNav');
+for (let i = 0; i < total; i++) {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  d.onclick = () => goTo(i);
+  dotNav.appendChild(d);
+}
+
+function navigate(dir) {
+  goTo(cur + dir);
+}
+
+function goTo(n) {
+  if (n < 0 || n >= total) return;
+  const dir = n > cur ? 1 : -1;
+  document.getElementById('s' + cur).classList.remove('active', 'back');
+  cur = n;
+  const ns = document.getElementById('s' + cur);
+  if (dir < 0) ns.classList.add('back'); else ns.classList.remove('back');
+  ns.classList.add('active');
+  updateUI();
+}
+
+function updateUI() {
+  document.getElementById('counter').textContent = (cur + 1) + ' / ' + total;
+  document.getElementById('btnPrev').disabled = cur === 0;
+  document.getElementById('btnNext').disabled = cur === total - 1;
+  document.querySelectorAll('.dot').forEach((d, i) => {
+    d.className = 'dot' + (i === cur ? ' active' : '');
+  });
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') navigate(-1);
+});
+
+updateUI();
+</script>
+</body>
+</html>
