@@ -407,28 +407,61 @@ html,body{
 .rp-mod{background:var(--blue-light);color:var(--blue)}
 .risk-mit{font-size:.65rem;color:var(--ink3);line-height:1.35}
 
-.crisis-row{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-top:.6rem}
-.crisis-card{border-radius:var(--r);padding:.75rem .9rem;border:.5px solid}
-.crisis-card.l1{background:var(--blue-light);border-color:#93c5fd}
-.crisis-card.l2{background:var(--amber-light);border-color:#fcd34d}
-.crisis-card.l3{background:var(--red-light);border-color:#fca5a5}
-.crisis-lvl{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.2rem}
+.crisis-row{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+
+  gap:.5rem;
+
+  margin-top:.45rem;
+}
+
+.crisis-card{
+  border-radius:var(--r);
+
+  padding:.6rem .75rem;
+
+  border:.5px solid;
+
+  overflow:hidden;
+}
+
+.crisis-lvl{
+  font-size:.54rem;
+
+  font-weight:700;
+
+  text-transform:uppercase;
+
+  letter-spacing:.08em;
+
+  margin-bottom:.15rem;
+}
+
 .crisis-time{
   font-family:'Syne',sans-serif;
 
-  font-size:1.05rem;
+  font-size:.92rem;
+
   font-weight:700;
 
   line-height:1;
+
   letter-spacing:-0.03em;
 
-  margin-bottom:.2rem;
+  margin-bottom:.18rem;
 
   text-rendering:optimizeLegibility;
   -webkit-font-smoothing:antialiased;
 }
-.crisis-who{font-size:.65rem;line-height:1.4;color:var(--ink2)}
 
+.crisis-who{
+  font-size:.58rem;
+
+  line-height:1.28;
+
+  color:var(--ink2);
+}
 /* ────────────────────────────────────── */
 /* SLIDE 8 — ROADMAP                     */
 /* ────────────────────────────────────── */
